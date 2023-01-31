@@ -1,5 +1,6 @@
 import { Container, Form, Button, Row, Nav, Col } from 'react-bootstrap';
 import { useState } from 'react';
+import axios from 'axios';
 import './App.css';
 
 export default function App() {
@@ -7,7 +8,7 @@ export default function App() {
   const [name, setName] = useState('');
   const [yes, setYes] = useState(false);
 
-  const formData = {
+  const user = {
     email: email,
     name: name,
     yes: yes,
@@ -16,9 +17,11 @@ export default function App() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    console.log(formData);
+    console.log(user);
 
-    //add route here
+    axios.post('/api/generate', { user }).then((res) => {
+      console.log(res);
+    });
   };
 
   return (
